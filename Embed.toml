@@ -1,0 +1,44 @@
+[default.rtt]
+enabled = false
+
+[default.probe]
+# USB vendor ID
+# usb_vid = "0403"
+protocol = "Jtag"
+
+[default.flashing]
+# Whether or not the target should be flashed.
+enabled = true
+# Whether to verify flash contents after downloading
+verify = true
+
+[default.reset]
+# Whether or not the target should be reset.
+# When flashing is enabled as well, the target will be reset after flashing regardless of this setting.
+enabled = true
+# Whether or not the target should be halted after reset.
+
+
+[default.gdb]
+# Whether or not a GDB server should be opened after flashing.
+enabled = false
+
+# GDB, no flash
+[gdb.gdb]
+enabled = true
+[gdb.rtt]
+enabled = false
+[gdb.flashing]
+enabled = false
+[gdb.reset]
+halt_afterwards = true
+
+# JUST RTT
+[with_rtt.rtt]
+enabled = true
+
+# JUST RTT, NO FLASH
+[rtt.rtt]
+enabled = true
+[rtt.flashing]
+enabled = false

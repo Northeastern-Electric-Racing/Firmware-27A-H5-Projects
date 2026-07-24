@@ -1,0 +1,19 @@
+[package]
+edition = "2024"
+name = "template-h5"
+version = "0.1.0"
+
+[dependencies]
+cortex-m.workspace = true
+cortex-m-rt.workspace = true
+defmt.workspace = true
+defmt-rtt.workspace = true
+embassy-embedded-hal.workspace = true
+embassy-executor.workspace = true
+embassy-stm32 = { workspace = true }
+embassy-sync.workspace = true
+embassy-time.workspace = true
+embassy-futures.workspace = true
+heapless.workspace = true
+panic-probe.workspace = true
+#static_cell.workspace = true

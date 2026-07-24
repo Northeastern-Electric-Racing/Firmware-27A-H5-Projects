@@ -1,0 +1,40 @@
+[workspace]
+members = ["msb-fw-2", "shepherd-3", "lightning", "template-h5"]
+resolver = "3"
+
+[workspace.dependencies]
+embassy-stm32 = { version = "0.6.0", features = ["defmt", "unstable-pac", "memory-x", "time", "time-driver-any", "exti", "stm32h563zi"] }
+embassy-sync = { version = "0.8.0", features = ["defmt"] }
+embassy-executor = { version = "0.10.0", features = ["executor-thread", "executor-interrupt", "defmt", "embassy-time-driver", "platform-cortex-m"] }
+embassy-time = { version = "0.5.1",  features = ["defmt", "defmt-timestamp-uptime", "tick-hz-32_768"] }
+embassy-embedded-hal = { version = "0.6.0", features = ["defmt", "time"] }
+embassy-futures = { version = "0.1.2", features = ["defmt"] }
+
+defmt = "1"
+defmt-rtt = "1"
+
+cortex-m = { version = "0.7", features = ["inline-asm", "critical-section-single-core"] }
+cortex-m-rt = "0.7"
+embedded-hal = { version = "1" }
+embedded-hal-bus = { version = "0.3", features = ["async"] }
+embedded-io = { version = "0.7", features = ["defmt"] }
+embedded-io-async = { version = "0.7", features = ["defmt"] }
+panic-probe = { version = "1", features = ["print-defmt", "defmt-error"] }
+heapless = { version = "0.9", default-features = false }
+static_cell = "2.1"
+#chrono = { version = "^0.4", default-features = false}
+embedded-hal-async = { version = "1" }
+embedded-can = {version = "0.4" }
+bitfield = "0.19"
+bitfield-struct = "0.13"
+
+embassy-net = { version = "0.9", features = ["tcp", "dhcpv4", "medium-ethernet", "proto-ipv6"] } # TODO why doesnt defmt work?
+rust-mqtt = { version = "0.5",default-features = false, features = ["defmt", "bump", "v5"]}
+
+[profile.release]
+opt-level = "s"
+lto = "fat"
+incremental = false
+codegen-units = 1
+# note: debug = true is okay - debuginfo isn't flashed to the device!
+debug = true
