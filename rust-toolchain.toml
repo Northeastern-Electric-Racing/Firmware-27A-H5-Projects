@@ -1,4 +1,4 @@
-# this toolchain should match the stable in emabssy rs, with only the target for this repo
+# this toolchain should match the stable in embassy rs, with only the target for this repo
 [toolchain]
 channel = "1.92"
 components = [ "rust-src", "rustfmt", "llvm-tools", "rust-analyzer" ]
