@@ -1,0 +1,14 @@
+{
+    "name": "My Rust Project",
+    "lspclient": {
+        "servers": {
+            "rust": {
+                "initializationOptions": {
+                    "check": {
+                        "allTargets": false
+                    }
+                }
+            }
+        }
+    }
+}
