@@ -1,0 +1,12 @@
+[target.thumbv8m.main-none-eabihf]
+runner = 'probe-rs run --chip STM32H563ZITx'
+
+[build]
+target = "thumbv8m.main-none-eabihf"
+
+[env]
+DEFMT_LOG = "trace"
+PROBE_RS_EMBED_CONFIG_FILE = { value = "Embed.toml", relative = true }
+
+[alias]
+embed2 = "embed --config-file=../Embed.toml"
