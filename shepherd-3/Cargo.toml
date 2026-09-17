@@ -1,0 +1,38 @@
+[package]
+edition = "2024"
+name = "shepherd-3"
+version = "0.1.0"
+
+[dependencies]
+cortex-m.workspace = true
+cortex-m-rt.workspace = true
+defmt.workspace = true
+defmt-rtt.workspace = true
+embassy-embedded-hal.workspace = true
+embassy-executor.workspace = true
+embassy-stm32 = { workspace = true }
+embassy-sync.workspace = true
+embassy-time.workspace = true
+embassy-futures.workspace = true
+embedded-hal-async.workspace = true
+embedded-hal-bus.workspace = true
+embedded-can.workspace = true
+heapless.workspace = true
+panic-probe.workspace = true
+assign-resources.workspace = true
+cangen.workspace = true
+static_cell.workspace = true
+
+function_name = { version = "0.3.0" }
+variant_count = { version = "1.2.1" }
+strum = { version = "0.28.0", default-features = false, features = ["derive"] }
+
+# u_TODO - probably maybe move this to the workspace Cargo.toml eventually if this is gonna be something we use
+uom = { version = "0.38.0", default-features = false, features = ["si", "f32"] }
+
+adbms6830b = { git = "https://github.com/bjackson312006/firmware-rs.git", branch = "adbms6830b", features = ["defmt"] }
+defmt-monitor = { git = "https://github.com/bjackson312006/defmt-monitor.git", branch = "main" }
+libm = { version = "0.2.16" }
+
+[lints]
+workspace = true

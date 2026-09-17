@@ -1,0 +1,31 @@
+# This config provides two commands for flashing/running:
+#
+# `cargo run`:      normal probe-rs run, with `defmt_monitor::monitor!()` calls disabled
+# `cargo monitor`   flashes with the defmt-monitor TUI, with `defmt_monitor::monitor!()` calls enabled
+
+[alias]
+monitor = [
+    "run",
+    "--config", "env.DEFMT_MONITOR='on'",
+    "--config", "target.thumbv8m.main-none-eabihf.runner='./.scripts/run.sh monitor'",
+]
+embed2 = "embed --config-file=../Embed.toml"
+
+[env]
+DEFMT_LOG = "trace"
+DEFMT_RTT_BUFFER_SIZE = "16384"
+
+# turn off DEFMT_MONITOR by default. `cargo monitor` can be used to flash with monitor
+DEFMT_MONITOR = "off"
+# firmware target
+FIRMWARE_CHIP = "STM32H563ZITx"
+# console formatting for probe-rs
+FIRMWARE_LOG_FORMAT = "{[{L}]%bold} {[{m}:{l}]%35} {s}"
+
+PROBE_RS_EMBED_CONFIG_FILE = { value = "Embed.toml", relative = true }
+
+[build]
+target = "thumbv8m.main-none-eabihf"
+
+[target.thumbv8m.main-none-eabihf]
+runner = "./.scripts/run.sh console"

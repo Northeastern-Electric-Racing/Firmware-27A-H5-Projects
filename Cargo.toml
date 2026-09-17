@@ -1,5 +1,5 @@
 [workspace]
-members = ["template-h5"]
+members = ["template-h5", "shepherd-3"]
 resolver = "3"
 
 [workspace.dependencies]
@@ -11,12 +11,12 @@ embassy-embedded-hal = { version = "0.6.0", features = ["defmt", "time"] }
 embassy-futures = { version = "0.1.2", features = ["defmt"] }
 
 defmt = "1"
-defmt-rtt = "1"
+defmt-rtt = {version = "1", features = ["disable-blocking-mode"]}
 
 cortex-m = { version = "0.7", features = ["inline-asm", "critical-section-single-core"] }
 cortex-m-rt = "0.7"
 embedded-hal = { version = "1" }
-embedded-hal-bus = { version = "0.3", features = ["async"] }
+embedded-hal-bus = { version = "0.3", features = ["async", "defmt-03"] }
 embedded-io = { version = "0.7", features = ["defmt"] }
 embedded-io-async = { version = "0.7", features = ["defmt"] }
 panic-probe = { version = "1", features = ["print-defmt", "defmt-error"] }
@@ -26,9 +26,30 @@ static_cell = "2.1.1"
 embedded-hal-async = { version = "1" }
 embedded-can = {version = "0.4" }
 bitfield-struct = "0.13"
+assign-resources = "0.5.0"
+
+can-handler = { git = "https://github.com/Northeastern-Electric-Racing/firmware-rs.git", branch = "develop" }
+cangen = { git = "https://github.com/bjackson312006/firmware-rs.git", branch = "cangen.path-fix" }
+
+[workspace.lints.clippy]
+all = { level = "allow", priority = -1 }
+correctness = "deny"
+perf = "deny"
+disallowed_types = "deny"
+default_numeric_fallback = "deny"
+
+[patch.crates-io]
+embassy-stm32 = { git = "https://github.com/embassy-rs/embassy", rev = "c0c0419f48c67e160ab0e3a8a93dcaaa2d4e84fb" }
+embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "c0c0419f48c67e160ab0e3a8a93dcaaa2d4e84fb" }
+embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "c0c0419f48c67e160ab0e3a8a93dcaaa2d4e84fb" }
+embassy-time = { git = "https://github.com/embassy-rs/embassy", rev = "c0c0419f48c67e160ab0e3a8a93dcaaa2d4e84fb" }
+embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "c0c0419f48c67e160ab0e3a8a93dcaaa2d4e84fb" }
+embassy-embedded-hal = { git = "https://github.com/embassy-rs/embassy", rev = "c0c0419f48c67e160ab0e3a8a93dcaaa2d4e84fb" }
+embassy-ptp-driver = { git = "https://github.com/embassy-rs/embassy", rev = "c0c0419f48c67e160ab0e3a8a93dcaaa2d4e84fb" }
+embassy-net = { git = "https://github.com/embassy-rs/embassy", rev = "c0c0419f48c67e160ab0e3a8a93dcaaa2d4e84fb" }
 
 [profile.release]
-opt-level = "s"
+opt-level = 3
 lto = "fat"
 incremental = false
 codegen-units = 1
